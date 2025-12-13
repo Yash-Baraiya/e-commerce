@@ -1,0 +1,31 @@
+{
+  "name": "@e-com/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "nx run-many --target=serve --all",
+    "build": "nx run-many --target=build --all",
+    "lint": "nx run-many --target=lint --all",
+    "test": "nx run-many --target=test --all",
+    "e2e": "nx run-many --target=e2e --all",
+    "dev": "nx run-many --target=dev --all",
+    "dev:frontend": "nx run-many --target=dev --projects=frontend",
+    "dev:backend": "nx run-many --target=dev --projects=backend"
+  },
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@nx/js": "22.2.3",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "nx": "22.2.3",
+    "prettier": "^2.6.2",
+    "tslib": "^2.3.0",
+    "typescript": "~5.9.2"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
+}
