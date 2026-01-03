@@ -1,0 +1,81 @@
+<div class="dashboard">
+  <header class="dashboard-header">
+    <h1>E-Commerce Dashboard</h1>
+    <p class="subtitle">Product & Sales Management</p>
+  </header>
+
+  <div class="stats-grid" *ngIf="stats">
+    <div class="stat-card">
+      <div class="stat-icon">📦</div>
+      <div class="stat-content">
+        <h3>Total Products</h3>
+        <p class="stat-value">{{ stats.totalProducts }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-content">
+        <h3>Total Revenue</h3>
+        <p class="stat-value">{{ formatCurrency(stats.totalRevenue) }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">📊</div>
+      <div class="stat-content">
+        <h3>Items Sold</h3>
+        <p class="stat-value">{{ stats.totalSold }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">⭐</div>
+      <div class="stat-content">
+        <h3>Avg Rating</h3>
+        <p class="stat-value">{{ stats.avgRating }}/5</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="products-section">
+    <h2>Product Inventory</h2>
+    
+    <div class="loading" *ngIf="loading">Loading products...</div>
+
+    <div class="table-container" *ngIf="!loading">
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Sold</th>
+            <th>Rating</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td class="product-name">{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+            <td class="price">{{ formatCurrency(product.price) }}</td>
+            <td>{{ product.stock }}</td>
+            <td class="sold">{{ product.sold }}</td>
+            <td>
+              <span class="rating">⭐ {{ product.rating }}</span>
+            </td>
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(product.status)">
+                {{ product.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
